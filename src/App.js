@@ -1,6 +1,8 @@
+// import Header from './common/Header/index.js';
 import './style.js';
+
 function App() {
-  return <div>hello word</div>;
+  return <div>{/* <Header /> */}</div>;
 }
 
 export default App;
