@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { actionCreators } from './store';
 import { connect } from 'react-redux';
 import {
   HeaderWrapper,
@@ -11,12 +12,12 @@ import {
   Button,
   SearchWrapper,
 } from './style';
-import store from '../../store';
 
 const Header = (props) => {
   const { focused, handleInputFocus, handleInputBlur } = props;
   // 绑定搜索动画ref
   const slideRef = React.createRef();
+
   return (
     <>
       <HeaderWrapper>
@@ -63,21 +64,21 @@ const Header = (props) => {
   );
 };
 
+// 传递的参数
 const mapStateProps = (state) => {
   return { focused: state.header.focused };
 };
 
+// 修改store里的参数数据
 const mapDispatchProps = (dispatch) => {
   return {
     // 搜索光标聚焦事件
     handleInputFocus() {
-      const action = { type: 'search_focus' };
-      store.dispatch(action);
+      dispatch(actionCreators.searchFocus());
     },
     // 搜索光标离开事件
     handleInputBlur() {
-      const action = { type: 'search_blur' };
-      store.dispatch(action);
+      dispatch(actionCreators.searchBlur());
     },
   };
 };
