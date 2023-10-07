@@ -23,47 +23,49 @@ class Header extends Component {
   }
   render() {
     return (
-      <HeaderWrapper>
-        <Logo href="/" />
-        <Nav>
-          <NavItem className="left active">首页</NavItem>
-          <NavItem className="left">下载App</NavItem>
-          <NavItem className="right">登录</NavItem>
-          <NavItem className="right">
-            <i className="iconfont icon-Aa" />
-          </NavItem>
-          <SearchWrapper>
-            {/* <CSSTransition
+      <>
+        <HeaderWrapper>
+          <Logo href="/" />
+          <Nav>
+            <NavItem className="left active">首页</NavItem>
+            <NavItem className="left">下载App</NavItem>
+            <NavItem className="right">登录</NavItem>
+            <NavItem className="right">
+              <i className="iconfont icon-Aa" />
+            </NavItem>
+            <SearchWrapper>
+              {/* <CSSTransition
               in={this.state.focused}
               timeout={200}
               classNames="slide"
               nodeRef={this.slideRef}
             > */}
-            <NavSearch
-              ref={this.slideRef}
-              className={this.state.focused ? 'focused' : ''}
-              onFocus={this.handleInputFocus}
-              onBlur={this.handleInputBlur}
-            />
-            {/* </CSSTransition> */}
+              <NavSearch
+                ref={this.slideRef}
+                className={this.state.focused ? 'focused' : ''}
+                onFocus={this.handleInputFocus}
+                onBlur={this.handleInputBlur}
+              />
+              {/* </CSSTransition> */}
 
-            <i
-              className={
-                this.state.focused
-                  ? 'focused iconfont icon-fangdajing'
-                  : 'iconfont icon-fangdajing'
-              }
-            />
-          </SearchWrapper>
-        </Nav>
-        <Addition>
-          <Button className="writting">
-            <i className="iconfont icon-line-quillpenyumaobi" />
-            写文章
-          </Button>
-          <Button className="reg">注册</Button>
-        </Addition>
-      </HeaderWrapper>
+              <i
+                className={
+                  this.state.focused
+                    ? 'focused iconfont icon-fangdajing'
+                    : 'iconfont icon-fangdajing'
+                }
+              />
+            </SearchWrapper>
+          </Nav>
+          <Addition>
+            <Button className="writting">
+              <i className="iconfont icon-line-quillpenyumaobi" />
+              写文章
+            </Button>
+            <Button className="reg">注册</Button>
+          </Addition>
+        </HeaderWrapper>
+      </>
     );
   }
   // 搜索光标聚焦事件
