@@ -1,14 +1,18 @@
 import React, { Fragment } from 'react';
+import { Provider } from 'react-redux';
 import Header from './common/Header/index.js';
 import { GlobalStyle } from './style.js';
+import store from './store';
 
-function App() {
+const App = () => {
   return (
     <Fragment>
-      <GlobalStyle />
-      <Header />
+      <Provider store={store}>
+        <GlobalStyle />
+        <Header />
+      </Provider>
     </Fragment>
   );
-}
+};
 
 export default App;
