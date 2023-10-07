@@ -66,7 +66,7 @@ const Header = (props) => {
 
 // 传递的参数
 const mapStateProps = (state) => {
-  return { focused: state.header.focused };
+  return { focused: state.get('header').get('focused') };
 };
 
 // 修改store里的参数数据

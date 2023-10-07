@@ -1,23 +1,22 @@
 import { actionTypes } from './index';
+import { fromJS } from 'immutable';
 
-const defaultState = { focused: false };
+const defaultState = fromJS({ focused: false });
 
 const reducer = (state = defaultState, action) => {
-  const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     // 搜索光标聚焦
     case actionTypes.SEARCH_FOCUS:
-      newState.focused = true;
-      break;
+      // immutable对象的set方法，会结合之前immutable对象的值
+      // 设置的值，返回一个全新的对象
+      return state.set('focused', true);
     // 搜索光标消失
     case actionTypes.SEARCH_BLUR:
-      newState.focused = false;
-      break;
-
+      return state.set('focused', false);
     default:
       break;
   }
-  return newState;
+  return state;
 };
 
 export default reducer;
