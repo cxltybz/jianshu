@@ -1,7 +1,13 @@
 import { actionTypes } from './index';
 import { fromJS } from 'immutable';
 
-const defaultState = fromJS({ focused: false });
+const defaultState = fromJS({
+  focused: false,
+  mouseIn: false,
+  list: [],
+  page: 1,
+  totalPage: 1,
+});
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -13,10 +19,20 @@ const reducer = (state = defaultState, action) => {
     // 搜索光标消失
     case actionTypes.SEARCH_BLUR:
       return state.set('focused', false);
+    case actionTypes.CHANGE_LIST:
+      return state.merge({
+        list: action.data,
+        totalPage: action.totalPage,
+      });
+    case actionTypes.MOUSE_ENTER:
+      return state.set('mouseIn', true);
+    case actionTypes.MOUSE_LEAVE:
+      return state.set('mouseIn', false);
+    case actionTypes.CHANdGE_PAGE:
+      return state.set('page', action.page);
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
 export default reducer;

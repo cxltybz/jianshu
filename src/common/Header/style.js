@@ -99,6 +99,48 @@ export const NavSearch = styled.input.attrs({
   }
 `;
 
+// 搜索框弹窗布局
+export const SearchInfo = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 56px;
+  width: 240px;
+  padding: 0 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+`;
+// 搜索框弹窗标题布局
+export const SearchInfoTitle = styled.div`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`;
+
+// 搜索框弹窗切换下一批布局
+export const SearchInfoSwitch = styled.span`
+  float: right;
+  font-size: 14px;
+`;
+
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`;
+
+// 搜索框弹窗列表布局
+export const SearchInfoItem = styled.a`
+  display: block;
+  float: left;
+  padding: 0 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #787878;
+`;
+
 // 头部右侧按钮样式
 export const Addition = styled.div`
   position: absolute;
