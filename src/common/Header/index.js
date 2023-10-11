@@ -49,7 +49,15 @@ class Header extends Component {
         >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
+            <SearchInfoSwitch
+              onClick={() => handleChangePage(page, totalPage, this.iconSpin)}
+            >
+              <i
+                ref={(icon) => {
+                  this.iconSpin = icon;
+                }}
+                className="iconfont icon-spin spin"
+              />{' '}
               换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
@@ -61,7 +69,8 @@ class Header extends Component {
     }
   }
   render() {
-    const { focused, handleInputFocus, handleInputBlur } = this.props;
+    const { focused, handleInputFocus, handleInputBlur, list } = this.props;
+
     return (
       <>
         <HeaderWrapper>
@@ -83,15 +92,15 @@ class Header extends Component {
                 <NavSearch
                   ref={this.slideRef}
                   className={focused ? 'focused' : ''}
-                  onFocus={handleInputFocus}
+                  onFocus={() => handleInputFocus(list)}
                   onBlur={handleInputBlur}
                 />
               </CSSTransition>
               <i
                 className={
                   focused
-                    ? 'focused iconfont icon-fangdajing'
-                    : 'iconfont icon-fangdajing'
+                    ? 'focused iconfont icon-fangdajing zoom'
+                    : 'iconfont icon-fangdajing zoom'
                 }
               />
               {this.getListArea()}
@@ -125,8 +134,8 @@ const mapStateProps = (state) => {
 const mapDispatchProps = (dispatch) => {
   return {
     // 搜索光标聚焦事件
-    handleInputFocus() {
-      dispatch(actionCreators.getList());
+    handleInputFocus(list) {
+      list.size === 0 && dispatch(actionCreators.getList());
       dispatch(actionCreators.searchFocus());
     },
     // 搜索光标离开事件
@@ -141,7 +150,10 @@ const mapDispatchProps = (dispatch) => {
     handleMouserLeave() {
       dispatch(actionCreators.mouseLeave());
     },
-    handleChangePage(page, totalpage) {
+    // 点击换一批事件
+    handleChangePage(page, totalpage, spin) {
+      const originAngle = +spin.style.transform.replace(/[^0-9]/gi, '');
+      spin.style.transform = `rotate(${originAngle + 360}deg)`;
       if (page < totalpage) {
         dispatch(actionCreators.changePage(page + 1));
       } else {
